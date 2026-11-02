@@ -1,14 +1,14 @@
 # Task 4: Deployment topologies and trade-offs
 
-**Name / ชื่อ:**
+**Name / ชื่อ:** วีรชัย แป้นถึง
 
-**Student ID / รหัสนิสิต:**
+**Student ID / รหัสนิสิต:** 6970279321
 
 This is **individual work**: each student completes and submits their own copy, in their own fork.
 
-*งานนี้เป็น**งานเดี่ยว** นิสิตแต่ละคนทำและส่งงานของตัวเอง ใน fork ของตัวเอง*
+_งานนี้เป็น**งานเดี่ยว** นิสิตแต่ละคนทำและส่งงานของตัวเอง ใน fork ของตัวเอง_
 
-**Scenario (A, B or C) / Scenario ที่เลือก:**
+**Scenario (A, B or C) / Scenario ที่เลือก:** A
 
 Choose **one** scenario below. If the last digit of your student ID is odd, take A or B; if it is even, take B or C. Use your measurements from Tutorial 6 as evidence: cite run names from `results/runs.csv`. Answer in Thai or English.
 
@@ -18,99 +18,124 @@ Facts that hold in every scenario / ข้อเท็จจริงที่�
 
 - The large model serves at most **20 calls per second** (4 calls at once × about 200 ms each), and every call costs money.
 
-  *large model รับได้สูงสุด **20 calls ต่อวินาที** (พร้อมกัน 4 calls × ประมาณ 200 ms ต่อ call) และทุก call มีค่าใช้จ่าย*
+  _large model รับได้สูงสุด **20 calls ต่อวินาที** (พร้อมกัน 4 calls × ประมาณ 200 ms ต่อ call) และทุก call มีค่าใช้จ่าย_
+
 - The small model is fast and cheap enough to run anywhere, including inside the review service or on a kiosk, but it is much less accurate on its own.
 
-  *small model เร็วและถูกพอที่จะรันที่ไหนก็ได้ รวมถึงภายใน review service หรือบน kiosk แต่ถ้าใช้ตัวเดียวจะแม่นน้อยกว่ามาก*
+  _small model เร็วและถูกพอที่จะรันที่ไหนก็ได้ รวมถึงภายใน review service หรือบน kiosk แต่ถ้าใช้ตัวเดียวจะแม่นน้อยกว่ามาก_
 
 ## Scenarios
 
 **A. Owner alerts.** When a customer posts a negative review, the restaurant owner gets a push notification within **2 seconds**. At the lunch peak, CampusEats receives **40 reviews per second**. A missed alert is acceptable, but a wrong alert (for example, "your customer is unhappy" when they are happy) makes owners stop trusting alerts and, in the end, ignore them.
 
-*เมื่อลูกค้าโพสต์รีวิวเชิงลบ เจ้าของร้านจะต้องได้รับ push notification ภายใน **2 วินาที** เวลาช่วงพีคตอนเที่ยง CampusEats ได้รับรีวิวจำนวน **40 รายการต่อวินาที** การพลาด alert ไปบ้างนั้นยอมรับได้ แต่ alert ที่ผิด (เช่น "ลูกค้าไม่พอใจ" ทั้งที่จริงๆ แล้วพอใจ) จะทำให้เจ้าของร้านไม่เชื่อถือและเลิกสนใจ alert ในที่สุด*
+_เมื่อลูกค้าโพสต์รีวิวเชิงลบ เจ้าของร้านจะต้องได้รับ push notification ภายใน **2 วินาที** เวลาช่วงพีคตอนเที่ยง CampusEats ได้รับรีวิวจำนวน **40 รายการต่อวินาที** การพลาด alert ไปบ้างนั้นยอมรับได้ แต่ alert ที่ผิด (เช่น "ลูกค้าไม่พอใจ" ทั้งที่จริงๆ แล้วพอใจ) จะทำให้เจ้าของร้านไม่เชื่อถือและเลิกสนใจ alert ในที่สุด_
 
 **B. Canteen kiosk.** A tablet in each canteen lets students leave a review on the spot. However, the canteen Wi-Fi is poor: the tablets lose their connection several times a day, for minutes at a time. The system must accept every review, even while a tablet is offline. Restaurant owners need the labels **by the end of the day**.
 
-*มี tablet ในแต่ละโรงอาหารให้นิสิตรีวิวได้ทันที อย่างไรก็ดี การเชื่อมต่อ Wi-Fi ในโรงอาหารไม่ดี ทำให้ tablet หลุดการเชื่อมต่อวันละหลายครั้ง ครั้งละหลายนาที ระบบจะต้องรับรีวิวได้ทุกรายการแม้ขณะที่กำลัง offline อยู่ และเจ้าของร้านต้องการ label **ภายในสิ้นวัน***
+\*มี tablet ในแต่ละโรงอาหารให้นิสิตรีวิวได้ทันที อย่างไรก็ดี การเชื่อมต่อ Wi-Fi ในโรงอาหารไม่ดี ทำให้ tablet หลุดการเชื่อมต่อวันละหลายครั้ง ครั้งละหลายนาที ระบบจะต้องรับรีวิวได้ทุกรายการแม้ขณะที่กำลัง offline อยู่ และเจ้าของร้านต้องการ label **ภายในสิ้นวัน\***
 
 **C. Weekly report.** Restaurant owners want a weekly sentiment report. Nothing in producing this report has to be real-time. **Accuracy matters most** and **cost must be minimal**.
 
-*เจ้าของร้านต้องการรายงาน sentiment รายสัปดาห์ ไม่มีอะไรที่จะต้องทำแบบ real-time ในการออกรายงานนี้ ความแม่นยำ **(accuracy) สำคัญที่สุด** และ **ค่าใช้จ่ายต้องน้อยที่สุด***
+\*เจ้าของร้านต้องการรายงาน sentiment รายสัปดาห์ ไม่มีอะไรที่จะต้องทำแบบ real-time ในการออกรายงานนี้ ความแม่นยำ **(accuracy) สำคัญที่สุด** และ **ค่าใช้จ่ายต้องน้อยที่สุด\***
 
 ## Topologies and patterns to choose from / Topology และ pattern ที่เลือกใช้ได้
 
-| | Topology | Where the model runs / โมเดลรันที่ไหน |
-|---|---|---|
-| T1 | Model as a service, synchronous | Inference service, called for each review (today's baseline)<br>*inference service ถูกเรียกทุกรีวิว (baseline ของวันนี้)* |
-| T2 | Model as a library | Inside the review service, or on the device<br>*ภายใน review service หรือบนอุปกรณ์* |
-| T3 | Hybrid | Small model locally, large model as a remote service<br>*small model รันในเครื่อง large model เป็น remote service* |
-| T4 | Asynchronous / batch | Reviews are queued (broker, W10) or stored, and scored later in bulk<br>*รีวิวถูกเข้าคิว (broker, W10) หรือเก็บไว้ แล้วติด label ทีหลังเป็นชุด* |
+|     | Topology                        | Where the model runs / โมเดลรันที่ไหน                                                                                                           |
+| --- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| T1  | Model as a service, synchronous | Inference service, called for each review (today's baseline)<br>_inference service ถูกเรียกทุกรีวิว (baseline ของวันนี้)_                       |
+| T2  | Model as a library              | Inside the review service, or on the device<br>_ภายใน review service หรือบนอุปกรณ์_                                                             |
+| T3  | Hybrid                          | Small model locally, large model as a remote service<br>_small model รันในเครื่อง large model เป็น remote service_                              |
+| T4  | Asynchronous / batch            | Reviews are queued (broker, W10) or stored, and scored later in bulk<br>_รีวิวถูกเข้าคิว (broker, W10) หรือเก็บไว้ แล้วติด label ทีหลังเป็นชุด_ |
 
 Combine one topology with any of the patterns from Tutorial 6: **fallback**, **cascade** and **cache**.
 
-*เลือก topology หนึ่งแบบ แล้วผสมกับ pattern จาก Tutorial 6 ได้ตามต้องการ: **fallback**, **cascade** และ **cache***
+\*เลือก topology หนึ่งแบบ แล้วผสมกับ pattern จาก Tutorial 6 ได้ตามต้องการ: **fallback**, **cascade** และ **cache\***
 
 ## 1. Quality requirements
 
 The three most important quality requirements for your scenario, each with a number where possible.
 
-*quality requirements ที่สำคัญที่สุด 3 ข้อของ scenario ที่เลือก ระบุตัวเลขเมื่อทำได้*
+_quality requirements ที่สำคัญที่สุด 3 ข้อของ scenario ที่เลือก ระบุตัวเลขเมื่อทำได้_
 
-| # | Quality | Requirement |
-|---|---|---|
-| 1 | | |
-| 2 | | |
-| 3 | | |
+| #   | Quality         | Requirement                                                                                                       |
+| --- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| 1   | Latency         | เจ้าของร้านได้ push alert ภายใน **2 วินาที** หลังมีรีวิวเชิงลบ                                                    |
+| 2   | Accuracy        | ลด false alert — เป้าหมาย accuracy ≥ **90%** (อิง `t2-0.6` = 91.5%; ไม่ใช้ small ล้วนที่ 72.5%)                   |
+| 3   | Capacity / Cost | พีค **40 reviews/s** แต่ large รับได้สูงสุด **20 calls/s** และต้องเรียก large ให้น้อยที่สุดโดยไม่พลาด QR accuracy |
 
 ## 2. Design / การออกแบบ
 
 Your topology, the patterns you add, and a container-level diagram (C4 level 2). The C4 diagram must be written in Mermaid.
 
-*topology ที่เลือก pattern ที่เพิ่ม และ diagram ระดับ container (C4 level 2) เขียนด้วย Mermaid*
+_topology ที่เลือก pattern ที่เพิ่ม และ diagram ระดับ container (C4 level 2) เขียนด้วย Mermaid_
+
+**Topology:** T3 Hybrid — small model รันใน review service, large model เป็น remote inference service  
+**Patterns:** cascade (threshold 0.6) + fallback + cache
 
 ```mermaid
 C4Container
-    title Your design: container diagram
-    %% Replace the example below with your own people, containers and relationships.
-    %% See the CampusEats C4 diagram in README.md for the full syntax.
-    Person(customer, "Customer", "Writes restaurant reviews")
+    title CampusEats Scenario A: hybrid cascade alerts
+    Person(customer, "Customer", "โพสต์รีวิวร้าน")
+    Person(owner, "Restaurant owner", "รับ push เมื่อมีรีวิวเชิงลบ")
     System_Boundary(campuseats, "CampusEats") {
-        Container(review, "Review service", "Python, FastAPI", "What it does")
+        Container(gateway, "API gateway", "Python, FastAPI", "จุดเข้าเดียวของ client")
+        Container(review, "Review service", "Python, FastAPI + small model", "เก็บรีวิว, cascade/cache/fallback, ยิง alert")
+        Container(inference, "Inference service (large)", "Python, FastAPI, scikit-learn", "large model เท่านั้น เรียกเมื่อ small ไม่มั่นใจ")
+        Container(notify, "Notification", "push", "ส่ง alert ถึงเจ้าของร้าน")
     }
-    Rel(customer, review, "Posts reviews", "HTTP/JSON")
+    Rel(customer, gateway, "ส่งรีวิว", "HTTP/JSON")
+    Rel(gateway, review, "ส่งต่อ", "HTTP/JSON")
+    Rel(review, inference, "escalate ถ้า confidence < 0.6", "REST")
+    Rel(review, notify, "negative label", "async")
+    Rel(notify, owner, "push alert ≤ 2s", "")
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ## 3. Evidence / หลักฐาน
 
 Which runs support your choice? Show the numbers and, for scenario A, the capacity arithmetic: how many large-model calls per second does your design need at the peak?
 
-*run ไหนที่สนับสนุนการตัดสินใจของนิสิต ให้นิสิตแสดงตัวเลขประกอบ และสำหรับ scenario A ให้นิสิตแสดงการคำนวณ capacity ด้วย เพื่อแสดงว่าในช่วงพีคนั้น design ของนิสิตต้องใช้ large model กี่ calls ต่อวินาที*
+_run ไหนที่สนับสนุนการตัดสินใจของนิสิต ให้นิสิตแสดงตัวเลขประกอบ และสำหรับ scenario A ให้นิสิตแสดงการคำนวณ capacity ด้วย เพื่อแสดงว่าในช่วงพีคนั้น design ของนิสิตต้องใช้ large model กี่ calls ต่อวินาที_
 
-| Run | What it shows / แสดงอะไร |
-|---|---|
-| | |
-| | |
+**Capacity arithmetic (พีค 40 reviews/s):**
+
+- `t2-0.6`: large_calls 38% → 0.38 × 40 ≈ **15.2 calls/s** (< 20) ✓
+- `t2-0.7`: large_calls 53% → 0.53 × 40 ≈ **21.2 calls/s** (> 20) ✗ เกินเพดาน
+- `t0-large`: 100% → 40 calls/s ✗ เกินมาก
+- `t3-cache` (threshold 0.7): large 38% จาก cache hits → ≈ 15.2 calls/s แต่เราเลือก threshold 0.6 เป็นหลัก; cache ช่วยลด large เพิ่มได้อีกเมื่อข้อความซ้ำ
+
+| Run      | What it shows / แสดงอะไร                                                                                       |
+| -------- | -------------------------------------------------------------------------------------------------------------- |
+| t0-small | small ล้วนเร็ว (p95 29 ms) แต่ accuracy 72.5% — false alert สูงเกินไปสำหรับ A                                  |
+| t0-large | accuracy 93.5% แต่ large 100% → ที่พีคต้อง 40 calls/s เกินเพดาน 20                                             |
+| t2-0.6   | accuracy 91.5%, large 38%, p50 6 ms → ที่พีค ≈ 15.2 large calls/s พอดีและทัน 2s                                |
+| t1-after | fallback ทำให้ inference ค้างแล้วไม่พังทั้งระบบ (errors 0, มี pending) — เหมาะกับ alert path ที่ต้องทนต่อ hang |
+| t3-cache | cache ลด large calls / latency เมื่อข้อความซ้ำ (hit 35%) ใช้เสริม cascade ได้                                  |
 
 ## 4. ADR
 
 Use the ADR format from W5.
 
-*ใช้รูปแบบ ADR จาก W5*
+_ใช้รูปแบบ ADR จาก W5_
 
-**Title:**
+**Title:** Hybrid cascade (threshold 0.6) for real-time owner alerts
 
 **Status:** Proposed
 
-**Context:**
+**Context:** Scenario A ต้องการ push alert ภายใน 2 วินาทีเมื่อมีรีวิวเชิงลบ ที่พีคมี 40 reviews/s แต่ large model รับได้แค่ 20 calls/s และทุก call มีค่าใช้จ่าย Alert ที่พลาดยอมรับได้ แต่ alert ที่ผิดทำให้เจ้าของร้านเลิกเชื่อ จาก Tutorial 6: small ล้วนแม่นแค่ 72.5% (`t0-small`) ส่วน large ล้วนแม่น 93.5% แต่เกิน capacity (`t0-large`)
 
-**Decision:**
+**Decision:** ใช้ **T3 Hybrid** — รัน small model ใน review service แล้ว escalate ไป large remote เฉพาะเมื่อ confidence < 0.6 (cascade) พร้อม **fallback** (timeout → pending/ไม่ยึด connection) และ **cache** สำหรับข้อความซ้ำ จากนั้นถ้า label เป็น negative ค่อยยิง push
 
 **Consequences:**
-- Positive:
-- Negative:
+
+- Positive: ที่พีคใช้ large ≈ 15.2 calls/s ภายใต้เพดาน 20; latency ส่วนใหญ่ใกล้ small (p50 ของ `t2-0.6` = 6 ms) จึงทัน 2s; accuracy 91.5% สูงกว่า small ล้วนมาก; cost ต่ำกว่า large ล้วน
+- Negative: ยังมีเคสที่ small มั่นใจแต่ผิด (เช่นประโยคปฏิเสธ) อาจเกิด false alert; รีวิวที่ยากยังไป large ทำให้ p95 สูงกว่า p50; ต้องดูแล cache invalidation เมื่อเปลี่ยนโมเดล
 
 **Alternatives considered:** at least one topology you rejected, and why.
 
-*อย่างน้อยหนึ่ง topology ที่ไม่เลือก และเหตุผล*
+_อย่างน้อยหนึ่ง topology ที่ไม่เลือก และเหตุผล_
 
->
+> **T1 synchronous large-only** — แม่นที่สุดแต่ที่พีคต้อง 40 large calls/s เกิน 20 และแพง  
+> **T2 small-only ในเครื่อง** — เร็วและถูกแต่ accuracy 72.5% (`t0-small`) false alert สูงเกินไป  
+> **T4 async/batch** — เหมาะกับรายงานทีหลัง ไม่ตอบโจทย์ alert ภายใน 2 วินาที  
+> **Cascade 0.7** (`t2-0.7`) — accuracy ดีขึ้นเล็กน้อยแต่ ≈ 21.2 large calls/s เกินเพดานที่พีค
